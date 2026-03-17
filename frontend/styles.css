@@ -1,0 +1,293 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f7f0;
+  --card: #ffffff;
+  --line: #d1d9c4;
+  --text: #1e2b23;
+  --text-soft: #2c3a30;
+  --muted: #5e6b64;
+  --accent: #cbd5ae;
+  --accent-soft: #e2e9d4;
+  --shadow: rgba(36, 50, 38, 0.06);
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+}
+
+* { 
+  box-sizing: border-box; 
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg) 64px;
+}
+
+/* Общие стили карточек */
+.hero, .card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  align-items: flex-start;
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+  background: var(--card);
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-sm);
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+h1 { 
+  margin: 0 0 var(--space-sm);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 { 
+  margin: 0 0 var(--space-md);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.subtitle { 
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+}
+
+.hint { 
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Сетка */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-xs);
+}
+
+.card { 
+  padding: var(--space-xl); 
+}
+
+/* Элементы списков */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.doc-item, .course-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  background: var(--card);
+}
+
+.doc-item h4, .course-item h4 {
+  margin-bottom: var(--space-xs);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.doc-meta {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  margin-top: var(--space-sm);
+}
+
+/* Формы */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin: var(--space-lg) 0;
+}
+
+.field label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
+input {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--card);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+input::placeholder {
+  color: #aab5aa;
+}
+
+/* Кнопки */
+button {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #eef2e4;
+  color: var(--text);
+}
+
+button.primary { 
+  background: var(--accent); 
+  font-weight: 600;
+}
+
+button.primary:hover:not(:disabled) { 
+  background: #c2d0a0; 
+}
+
+button:not(.primary):hover:not(:disabled) { 
+  background: #e0e9d2; 
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+button.is-disabled-state {
+  background: #e6e9df;
+  color: #6f776e;
+}
+
+button.is-success-state {
+  background: #dfeeda;
+  color: #2b5a24;
+}
+
+/* Статусы и бейджи */
+.status-box {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  background: #eef7e4;
+  border: 1px solid #d4e5c2;
+  color: #2b5a24;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 100px;
+  padding: 4px 10px;
+  background: #eef2e4;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Утилиты для расположения */
+.row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.course-status-hint {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--line);
+}
+
+/* Разделители */
+hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: var(--space-lg) 0;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+  .grid { 
+    grid-template-columns: 1fr; 
+    gap: var(--space-md);
+  }
+  
+  .hero { 
+    flex-direction: column; 
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+  }
+  
+  h1 { 
+    font-size: 1.8rem; 
+  }
+  
+  .page {
+    padding: var(--space-lg) var(--space-md) 48px;
+  }
+  
+  .card { 
+    padding: var(--space-lg); 
+  }
+}

@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build and start services
+        run: docker compose up -d --build
+
+      - name: Wait for backend
+        run: |
+          for i in {1..30}; do
+            if curl -fsS http://localhost:8000/health; then
+              exit 0
+            fi
+            sleep 3
+          done
+          docker compose logs backend
+          exit 1
+
+      - name: Install test dependencies
+        run: pip install -r tests/requirements.txt
+
+      - name: Run integration tests
+        run: pytest tests/integration -v --base-url http://localhost:8000
+
+      - name: Show service logs on failure
+        if: failure()
+        run: docker compose logs
+
+      - name: Stop services
+        if: always()
+        run: docker compose down -v
