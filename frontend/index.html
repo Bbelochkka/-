@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adaptation System</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Лабораторная работа №5</p>
+          <h1>Платформа адаптации менеджеров по продажам</h1>
+          <p class="subtitle">SPA-клиент для взаимодействия с микросервисной системой: frontend → backend API → PostgreSQL, плюс отдельный worker для фоновой генерации курсов по документам.</p>
+        </div>
+        <button id="refreshAllBtn" class="primary">Обновить данные</button>
+      </header>
+      <section class="grid">
+        <section class="card">
+          <h2>Документы для генерации</h2>
+          <div id="documentsList" class="stack"></div>
+          <label class="field"><span>Название создаваемого курса</span><input id="courseTitleInput" value="Курс по материалам отдела продаж" /></label>
+          <button id="generateBtn" class="primary">Сгенерировать курс</button>
+          <div id="taskResult" class="hint"></div>
+        </section>
+        <section class="card">
+          <div class="row-between"><h2>Курсы</h2><button id="reloadCoursesBtn">Обновить список</button></div>
+          <div id="coursesList" class="stack"></div>
+        </section>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

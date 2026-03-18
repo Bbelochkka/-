@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: adaptation-db
+    environment:
+      POSTGRES_DB: adaptation_system
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: adaptation-backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://app:app@db:5432/adaptation_system
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  worker:
+    build: ./worker
+    container_name: adaptation-worker
+    environment:
+      DATABASE_URL: postgresql+psycopg://app:app@db:5432/adaptation_system
+      POLL_INTERVAL_SECONDS: 2
+    depends_on:
+      - db
+      - backend
+
+  frontend:
+    build: ./frontend
+    container_name: adaptation-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  postgres_data:
